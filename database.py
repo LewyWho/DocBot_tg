@@ -29,7 +29,6 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS results (
         result_id INTEGER PRIMARY KEY, -- Идентификатор результата
         event_id INTEGER, -- Идентификатор мероприятия
-        level TEXT, -- Уровень мероприятия (муниципальный, региональный и т.д.)
         result TEXT, -- Результат (1 место, 2 место, 3 место, участие и т.д.)
         points INTEGER -- Баллы, назначаемые за результат
     )
