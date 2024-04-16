@@ -1,3 +1,3 @@
-BOT_TOKEN = '6397326202:AAHjt6athSYY2-tK8tQfHikdxawwbA9r_os'
+BOT_TOKEN =
 
 admin_bot = '786279129'
