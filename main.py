@@ -222,18 +222,14 @@ async def check_my_stats(call: types.CallbackQuery):
     """
     results = cursor.execute(results_query, (user_id,)).fetchall()
 
-    # Создание листа "Результаты мероприятий"
     ws_results = wb.create_sheet(title="Результаты мероприятий")
 
-    # Добавление заголовков столбцов
     ws_results.append(
         ["ID события", "Название мероприятия", "Описание мероприятия", "Уровень мероприятия", "Результат", "Баллы"])
 
-    # Заполнение данными
     for result in results:
         ws_results.append(result)
 
-    # Настройка форматирования
     for cell in ws_results[1]:
         cell.font = bold_font
 
@@ -270,7 +266,6 @@ async def check_my_stats(call: types.CallbackQuery):
 async def add_result(call: types.CallbackQuery):
     user_id = call.from_user.id
 
-    # Запрос для выбора мероприятий без результата
     not_results_query = """
             SELECT events.event_id, events.event_name, events.event_description, events.event_level, events.file_id, events.event_date, users.full_name
             FROM events
@@ -392,17 +387,14 @@ async def check_stats_staff(call: types.CallbackQuery):
 
     bold_font = openpyxl.styles.Font(bold=True)
 
-    # Создаем словарь для хранения данных по отделам
     department_data = {}
 
-    # Группируем данные по отделам
     for staff_row in staff_data:
         full_name, department, *event_data = staff_row
         if department not in department_data:
             department_data[department] = []
         department_data[department].append([full_name, *event_data])
 
-    # Создаем листы для каждого отдела
     for department, data in department_data.items():
         ws_staff = wb.create_sheet(title=department)
         ws_staff.append(
@@ -421,11 +413,9 @@ async def check_stats_staff(call: types.CallbackQuery):
             for cell in row:
                 cell.alignment = openpyxl.styles.Alignment(horizontal='center', vertical='center', wrap_text=True)
 
-    # Удаляем лист по умолчанию
     default_sheet = wb.get_sheet_by_name('Sheet')
     wb.remove(default_sheet)
 
-    # Сохраняем файл Excel и создаем архив
     filename = f"staff_stats.xlsx"
     wb.save(filename)
 
@@ -596,7 +586,6 @@ async def change_staff_info_value(message: types.Message, state: FSMContext):
 
     await message.answer("Данные изменены.")
     await state.finish()
-
 
 
 if __name__ == '__main__':
