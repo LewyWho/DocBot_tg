@@ -21,11 +21,9 @@ async def main_keyboard(user_id):
         keyboard.add(button_add_result)
     elif role == 2:
         button_check_stats_staff = InlineKeyboardButton("Проверить статистику", callback_data="check_stats_staff")
-        button_create_report = InlineKeyboardButton("Создать отчет сотрудников", callback_data="create_report_staff")
         keyboard.add(button_check_stats_staff)
-        keyboard.add(button_create_report)
     elif role == 3:
-        button_create_report = InlineKeyboardButton("Создать отчет сотрудников", callback_data="create_report_staff")
+        button_create_report = InlineKeyboardButton("Проверить статистику", callback_data="check_stats_staff")
         keyboard.add(button_create_report)
     elif role == 4:
         button_add_new_staff = InlineKeyboardButton("Добавить нового сотрудника", callback_data="add_new_staff")
